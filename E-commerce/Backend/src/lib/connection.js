@@ -1,6 +1,7 @@
 import mongoose from 'mongoose'
-
+import dotenv from 'dotenv'
+dotenv.config()
 async function connect(){
-    mongoose.connect('mongodb://localhost:27017/ecommerce').then(()=>{console.log('mongodb connected')}).catch((error)=>{console.log(error)})
+    mongoose.connect(process.env.MONGOURL).then(()=>{console.log('mongodb connected')}).catch((error)=>{console.log(error)})
 }
 export default connect

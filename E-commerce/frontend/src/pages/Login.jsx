@@ -1,12 +1,17 @@
 
-import React, { useState } from "react";
+import  { useState } from "react";
 import "./Login.css";
 import axios from "../lib/axios.js"
+import Alert from "../components/Alert.jsx"
+import { use } from "react";
 const Login = () => {
   const [email,setemail]=useState('')
   const [name,setName] =useState('')
   const [password,setpassword] = useState('')
   const [isLogin, setIsLogin] = useState(true);
+  const [messege,setmessege] =useState('')
+  const [type,settype] = useState('')
+
  async function handleSubmit(event){
     event.preventDefault()
     if(isLogin){
@@ -14,12 +19,18 @@ const Login = () => {
         const response = await axios.post('/api/auth/signin',{email,password})
         if(response.status===200){
           console.log('loggedin')
+          setmessege(response.data.msg)
+          settype('success')
         }
       } catch (error) {
         if(error.response.data && error.response){
           console.log('incorrect details')
+          setmessege(error.response.data.msg)
+          settype('error')
         }
         else{
+          setmessege(error.response.data.msg)
+          settype('error')
           console.log('server error')
         }
       }
@@ -29,19 +40,28 @@ const Login = () => {
         const response = await axios.post('/api/auth/signup',{name,email,password})
         if(response.status===200){
           console.log('signed in ')
+          setmessege(response.data.msg)
+          settype('success')
         }
       } catch (error) {
         if(error.response.data && error.response){
           console.log('incorrect details')
+          setmessege(error.response.data.msg)
+          console.log('incorrect details')
         }
         else{
+          console.log('incorrect details')
+          setmessege(error.response.data.msg)
           console.log('server error')
         }
       }
     }
   }
   return (
+    <>
+    <Alert message={messege} type={type} onClose={()=>{setmessege('')}}/>
     <div className="auth-container">
+     
       <div className="auth-toggle">
         <button
           className={`toggle-button ${isLogin ? "active" : ""}`}
@@ -105,6 +125,7 @@ const Login = () => {
         </div>
       )}
     </div>
+    </>
   );
 };
 
