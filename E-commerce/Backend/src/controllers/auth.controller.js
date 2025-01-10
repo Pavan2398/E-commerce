@@ -27,10 +27,10 @@ export const signup = async (req,res)=>{
         }
         const user = await User.findOne({email});
         if(user)
-            return res.status(400).json({msg:'user existed '})
+            return res.status(400).json({msg:'user already exists '})
         const newuser = new User({email:email,password:password,name:name})
        await newuser.save()
-        return res.status(200).json({msg:'signedup'})
+        return res.status(200).json({msg:'registered successfully'})
     } catch (error) {
         console.log(error)
         return res.status(500).json({msg:'error with server'})
