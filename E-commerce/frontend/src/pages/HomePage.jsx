@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-
+import {useNavigate} from 'react-router-dom'
 import '../CSS/HomePage.css';
 import {Link} from 'react-router-dom'
 
 function HomePage() {
-  
+  const navigate = useNavigate()
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const slides = [
@@ -80,37 +80,7 @@ function HomePage() {
 
   return (
     <div className="app">
-      <header className="header">
-        <div className="header-top">
-          <div className="logo">
-            <FiMenu className="menu-icon" onClick={() => setIsMenuOpen(!isMenuOpen)} />
-            <h1>ShopHub</h1>
-          </div>
-          <div className="search-bar">
-            <input type="text" placeholder="Search for products, brands and more..." />
-            <FiSearch className="search-icon" />
-          </div>
-          <div className="header-actions">
-            <div className="action-item">
-              <FiUser />
-              <Link to="/login">
-           <span>Account</span>
-              </Link>
-            </div>
-            <div className="action-item">
-              <FiShoppingCart />
-              
-              <span>Cart</span>
-                      
-            </div>
-          </div>
-        </div>
-        <nav className={`categories ${isMenuOpen ? 'open' : ''}`}>
-          {categories.map((category, index) => (
-            <a key={index} href="#" className="category-item">{category}</a>
-          ))}
-        </nav>
-      </header>
+    
 
       <main>
         <section className="carousel-section">
@@ -209,9 +179,12 @@ function HomePage() {
           </div>
         </section>
       </main>
+      </div>
+
   );
 
- 
-}
 
+ 
+
+}
 export default HomePage;
