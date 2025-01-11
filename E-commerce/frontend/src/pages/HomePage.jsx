@@ -4,11 +4,14 @@ import { FiSearch, FiShoppingCart, FiUser, FiMenu } from 'react-icons/fi';
 import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
 import '../CSS/HomePage.css';
 import {Link} from 'react-router-dom'
-
+import useUserStore from '../store/userdetails';
 function HomePage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
-
+  const isLoggedIn = useUserStore((state)=>state.isLoggedIn)
+  const name = useUserStore((state)=>state.name)
+  console.log(isLoggedIn)
+  console.log(name)
   const slides = [
     {
       id: 1,
@@ -90,9 +93,13 @@ function HomePage() {
           <div className="header-actions">
             <div className="action-item">
               <FiUser />
-              <Link to="/login">
-           <span>Account</span>
-              </Link>
+              {isLoggedIn==false&& <Link to="/login">
+                Login
+              </Link>}{
+                isLoggedIn==true &&  <span>{name}</span>
+
+              }
+              
             </div>
             <div className="action-item">
               <FiShoppingCart />
