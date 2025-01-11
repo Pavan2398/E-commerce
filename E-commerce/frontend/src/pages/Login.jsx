@@ -5,14 +5,21 @@ import Alert from "../components/Alert.jsx"
 import { useGoogleLogin } from '@react-oauth/google';
 import  {jwtDecode}  from "jwt-decode";
 import { useNavigate } from "react-router-dom";
+
+import useUserStore from '../store/userdetails';
 const Login = () => {
-  const navigate = useNavigate()
+  
   const [email,setemail]=useState('')
   const [name,setName] =useState('')
   const [password,setpassword] = useState('')
   const [isLogin, setIsLogin] = useState(true);
   const [messege,setmessege] =useState('')
   const [type,settype] = useState('')
+  const isLoggedIn = useUserStore((state)=>state.isLoggedIn)
+  const setloggedin = useUserStore((state)=>state.setLoggedIn)
+  const setloggeduser = useUserStore((state)=>state.setName)
+  const loggeduser = useUserStore((state)=>state.name)
+  const navigate = useNavigate()
   const login = useGoogleLogin({
     onSuccess: tokenResponse => {
       console.log((tokenResponse.access_token))},
@@ -32,6 +39,11 @@ const Login = () => {
           console.log('loggedin')
           setmessege(response.data.msg)
           settype('success')
+          setloggedin(true)
+          setloggeduser(response.data.name)
+          
+          navigate('/')
+          
         }
       } catch (error) {
         if(error.response.data && error.response){

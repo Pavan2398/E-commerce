@@ -1,5 +1,4 @@
 import User from "../models/User.model.js"
-import jwt from 'jsonwebtoken'
 import {encodeToken} from "../lib/jwt.js"
 export const login =async (req,res)=>{
 const {email,password} = req.body;
@@ -12,7 +11,7 @@ try {
     if(!user)
         return  res.status(400).json({msg:'invalid details'})
     encodeToken(user._id,res)
-    return res.status(200).json({msg:'logged in'})
+    return res.status(200).json({name:user.name,msg:'succesfull'})
 
 } catch (error) {
     console.log('error')
