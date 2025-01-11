@@ -1,0 +1,125 @@
+.header {
+    background-color: #2d2d2d;
+    padding: 0.5rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    width: 100%;
+  }
+  
+  .header-top {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding: 0.5rem 0;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    min-width: fit-content;
+  }
+  
+  .menu-icon {
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #4a9eff;
+  }
+  
+  .logo h1 {
+    font-size: 1.5rem;
+    color: #4a9eff;
+  }
+  
+  .search-bar {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    background-color: #3d3d3d;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    min-width: 200px;
+  }
+  
+  .search-bar input {
+    flex: 1;
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 1rem;
+    outline: none;
+    width: 100%;
+  }
+  
+  .search-bar input::placeholder {
+    color: #888888;
+  }
+  
+  .search-icon {
+    color: #888888;
+    margin-left: 0.5rem;
+    cursor: pointer;
+  }
+  
+  .header-actions {
+    display: flex;
+    gap: 2rem;
+    min-width: fit-content;
+  }
+  
+  .action-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    cursor: pointer;
+    color: #888888;
+    transition: color 0.3s ease;
+    text-decoration: none; 
+  }
+  
+  .action-item:hover {
+    color: #4a9eff;
+  }
+  .action-item a {
+    text-decoration: none; /* Removes underline */
+    color: inherit; /* Inherits color from the parent */
+    font-size: 1rem; /* Ensures consistent text size */
+    font-weight: normal; /* Ensures consistent text weight */
+    transition: color 0.3s ease; /* Matches hover effects */
+  }
+  
+  .action-item a:hover {
+    color: #4a9eff; /* Same hover effect as the parent */
+  }
+  
+  .categories {
+    display: flex;
+    gap: 2rem;
+    padding: 1rem 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  
+  .categories::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .category-item {
+    color: #888888;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.3s ease;
+  }
+  
+  .category-item:hover {
+    color: #4a9eff;
+  }

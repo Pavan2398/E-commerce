@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiSearch, FiShoppingCart, FiUser, FiMenu } from 'react-icons/fi';
-import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
 import '../CSS/HomePage.css';
-import {Link} from 'react-router-dom'
+import {  useNavigate } from 'react-router-dom';
+
 
 function HomePage() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  
   const [currentSlide, setCurrentSlide] = useState(0);
+  const navigate = useNavigate();
 
   const slides = [
     {
@@ -16,7 +16,8 @@ function HomePage() {
       title: 'New iPhone 14 Pro',
       description: 'Experience the power of innovation with up to 20% off on the latest iPhone models',
       cta: 'Shop Now',
-      discount: 'Save 20%'
+      discount: 'Save 20%',
+      link: '/product/iphone-14-pro'
     },
     {
       id: 2,
@@ -24,7 +25,8 @@ function HomePage() {
       title: 'MacBook Pro M2',
       description: 'Unleash your creativity with the all-new MacBook Pro featuring the M2 chip',
       cta: 'Learn More',
-      discount: 'Save $200'
+      discount: 'Save $200',
+      link: '/product/macbook-pro-m2'
     },
     {
       id: 3,
@@ -32,7 +34,8 @@ function HomePage() {
       title: 'Gaming Laptops',
       description: 'Level up your gaming experience with premium gaming laptops',
       cta: 'Explore Now',
-      discount: 'Up to 30% Off'
+      discount: 'Up to 30% Off',
+      link: '/product/gaming-laptops'
     }
   ];
 
@@ -75,40 +78,7 @@ function HomePage() {
     }
   ];
 
-  return (
-    <div className="app">
-      <header className="header">
-        <div className="header-top">
-          <div className="logo">
-            <FiMenu className="menu-icon" onClick={() => setIsMenuOpen(!isMenuOpen)} />
-            <h1>ShopHub</h1>
-          </div>
-          <div className="search-bar">
-            <input type="text" placeholder="Search for products, brands and more..." />
-            <FiSearch className="search-icon" />
-          </div>
-          <div className="header-actions">
-            <div className="action-item">
-              <FiUser />
-              <Link to="/login">
-           <span>Account</span>
-              </Link>
-            </div>
-            <div className="action-item">
-              <FiShoppingCart />
-              
-              <span>Cart</span>
-                      
-            </div>
-          </div>
-        </div>
-        <nav className={`categories ${isMenuOpen ? 'open' : ''}`}>
-          {categories.map((category, index) => (
-            <a key={index} href="#" className="category-item">{category}</a>
-          ))}
-        </nav>
-      </header>
-
+  return(
       <main>
         <section className="carousel-section">
           <div className="carousel-container">
@@ -153,6 +123,8 @@ function HomePage() {
                     transition={{ delay: 0.6 }}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
+                  onClick={() => navigate(slides[currentSlide].link)}
+
                   >
                     {slides[currentSlide].cta}
                   </motion.button>
@@ -204,56 +176,9 @@ function HomePage() {
           </div>
         </section>
       </main>
-
-      <footer className="footer">
-        <div className="footer-content">
-          <motion.div className="footer-section">
-            <h4>About ShopHub</h4>
-            <ul>
-              <li><a href="#">About Us</a></li>
-              <li><a href="#">Careers</a></li>
-              <li><a href="#">Press Releases</a></li>
-              <li><a href="#">Corporate Information</a></li>
-            </ul>
-          </motion.div>
-
-          <motion.div className="footer-section">
-            <h4>Help & Support</h4>
-            <ul>
-              <li><a href="#">Customer Service</a></li>
-              <li><a href="#">Shipping Info</a></li>
-              <li><a href="#">Returns</a></li>
-              <li><a href="#">Contact Us</a></li>
-            </ul>
-          </motion.div>
-
-          <motion.div className="footer-section">
-            <h4>Policy</h4>
-            <ul>
-              <li><a href="#">Return Policy</a></li>
-              <li><a href="#">Terms of Use</a></li>
-              <li><a href="#">Security</a></li>
-              <li><a href="#">Privacy</a></li>
-            </ul>
-          </motion.div>
-
-          <motion.div className="footer-section">
-            <h4>Connect With Us</h4>
-            <div className="social-links">
-              <a href="#"><FaFacebookF /></a>
-              <a href="#"><FaTwitter /></a>
-              <a href="#"><FaInstagram /></a>
-              <a href="#"><FaLinkedinIn /></a>
-            </div>
-          </motion.div>
-        </div>
-
-        <div className="footer-bottom">
-          <p>&copy; {new Date().getFullYear()} ShopHub. All rights reserved.</p>
-        </div>
-      </footer>
-    </div>
   );
+
+ 
 }
 
 export default HomePage;
