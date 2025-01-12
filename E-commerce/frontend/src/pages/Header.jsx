@@ -109,7 +109,12 @@ function Header() {
         </div>
         <nav className={`categories ${isMenuOpen ? 'open' : ''}`}>
           {categories.map((category, index) => (
-            <a key={index} href="#" className="category-item">{category}</a>
+            <a key={index} href="#" className="category-item" onClick={(e) => {
+              e.preventDefault();
+              if (category === 'Electronics') {
+                navigate('/electronics');
+              }
+            }}>{category}</a>
           ))}
         </nav>
       </header>

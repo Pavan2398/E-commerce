@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-
+import {useNavigate} from 'react-router-dom'
 import '../CSS/HomePage.css';
-import {Link, useNavigate} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 function HomePage() {
   
+
   const [currentSlide, setCurrentSlide] = useState(0);
   const navigate = useNavigate();
   const slides = [
@@ -79,6 +80,7 @@ function HomePage() {
   ];
 
   return (
+   
     
 
       <main>
@@ -179,9 +181,11 @@ function HomePage() {
         </section>
       </main>
       
+
   );
 
- }
 
+ 
 
+}
 export default HomePage;
