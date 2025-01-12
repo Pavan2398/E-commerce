@@ -10,7 +10,7 @@ import {  useNavigate } from 'react-router-dom';
 function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
-//   const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const slides = [
     {
